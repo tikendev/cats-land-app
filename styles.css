@@ -50,13 +50,13 @@ body {
             color: rgb(6, 33, 75);
         }
 
-        &.not-disabled {
+        &.disabled {
             cursor: not-allowed;
             background-color: rgb(150, 180, 220);
             color: rgb(125, 125, 121);
         }
         
-        &.not-disabled:hover {
+        &.disabled:hover {
             cursor: not-allowed;
             background-color: rgb(150, 180, 220);
             color: rgb(125, 125, 121);
