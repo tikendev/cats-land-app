@@ -50,6 +50,8 @@ export const addToFavorites = () => {
             const imgSrc = article.querySelector('img').src;
             const favouriteId = await postFavoriteCat( config, catId );
 
+            if (!favouriteId) return ;
+
             btn.disabled = true;
             btn.classList.add('disabled');
             
@@ -80,9 +82,14 @@ export const deleteCatOfFavorites = ( article, favouriteId ) => {
     deleteCatById( favouriteId );
 }
 
-export const controlError = ( respStatus ) => {
+export const controlError = ( respStatus, containerId ) => {
+
+    const sectionContainer = document.getElementById(containerId);
     const spanError = document.createElement('span');
-    spanError.textContent = `There was an error: ${respStatus}❗️`;
+
+    sectionContainer.innerHTML = '';
+    spanError.textContent = `${respStatus}❗️`;
+    sectionContainer.appendChild(spanError);
 
     return spanError;
 }

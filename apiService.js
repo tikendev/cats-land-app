@@ -17,9 +17,7 @@ export const getRandomCats = async( config ) => {
 
     } catch (error) {
         console.error('Error fetching random cats', error);
-        const randomContainer = document.getElementById('randomContainer');
-        const spanError = controlError(error.message);
-        randomContainer.appendChild(spanError);
+        controlError('Error loading random Cats. Please try again', 'randomContainer');
     }
 }
 
@@ -51,9 +49,7 @@ export const getFavoriteCats = async( config ) => {
         
     } catch (error) {
         console.error('Error fetching favourite cats', error);
-        const favoritesContainer = document.getElementById('favoritesContainer');
-        const spanError = controlError(error.message);
-        favoritesContainer.appendChild(spanError);
+        controlError('Error loading your favourite cats. Please try again.', 'favoritesContainer');
     }
 }
 
@@ -81,7 +77,8 @@ export const postFavoriteCat = async( config, catId ) => {
         return data.id;
         
     } catch (error) {
-        console.error('Error posting your favourite cata', error.message);
+        console.error('Error posting your favourite cat', error.message);
+        controlError('Error saving cat. Please try again.', 'favoritesContainer');
     }
 }
 
@@ -104,6 +101,7 @@ export const deleteCatById = async( favoriteId ) => {
 
     } catch (error) {
         console.error('Error deleting favourite cat:', error.message);
+        controlError(error.message, 'favoritesContainer');
     }
 }
 
