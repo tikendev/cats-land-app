@@ -11,7 +11,6 @@ Los HTTP Status Codes son respuestas que un servidor web envía al navegador par
 ## 4xx: Error del cliente (e.g., 404 Not Found)
 ## 5xx: Error del servidor (e.g., 500 Internal Server Error).
 
-
 # ¿Qué son los Métodos HTTP?
 
 #### - GET 👀
@@ -75,5 +74,40 @@ X-API-KEY: ABC123
 - video/webm
 
 # FormData
+
+`FormData` en JavaScript se usa para construir un conjunto de pares clave/valor que puedes enviar fácilmente mediante `fetch` o `XMLHttpRequest` en solicitudes HTTP (como `POST`), especialmente para enviar archivos o formularios.
+
+### Pasos simples:
+
+1. **Crear un objeto `FormData`:**
+
+   ```javascript
+   const formData = new FormData();
+   ```
+2. #### Agregar datos al FormData: Puedes agregar cualquier valor (texto, números, archivos):
+
+    ```javascript
+    formData.append('username', 'JohnDoe');
+    formData.append('file', fileInput.files[0]);
+    ```
+3. #### Enviar FormData con fetch:
+
+    ```javascript
+    fetch('https://example.com/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+    ```
+
+### En resumen:
+`FormData` simplifica el envío de formularios, especialmente para subir archivos. 
+Usas `.append()` para añadir datos.
+Lo envías en la propiedad body de fetch (o XMLHttpRequest).
+
+# Axios: librerías de JavaScript para consumir APIs
+
 
 

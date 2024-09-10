@@ -1,5 +1,6 @@
 import { createImages, createArticle, controlError, deleteCatOfFavorites } from './ui.js';
 import { getConfig } from './config.js';
+import { api } from './axios.js';
 
 export const getRandomCats = async( config ) => {
     const { API_URL_RANDOM, queryString, API_KEY } = config;
@@ -54,26 +55,31 @@ export const getFavoriteCats = async( config ) => {
 }
 
 export const postFavoriteCat = async( config, catId ) => {
-    const { API_URL_FAVORITES, API_KEY } = config;
-    const postBody = {
-        image_id: catId, 
-        sub_id: 'user-123'
-    }
+    // const { API_URL_FAVORITES, API_KEY } = config;
+    // const postBody = {
+    //     image_id: catId, 
+    //     sub_id: 'user-123'
+    // }
 
     try {
-        const resp = await fetch(API_URL_FAVORITES, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': API_KEY,
-            },
-            body: JSON.stringify(postBody)
+        // const resp = await fetch(API_URL_FAVORITES, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-api-key': API_KEY,
+        //     },
+        //     body: JSON.stringify(postBody)
+        // });
+
+        const { data , status } = await api.post('/favourites', {
+            image_id: catId, 
+            sub_id: 'user-123'
         });
 
-        if (!resp.ok)
-            throw new Error(`HTTP Error: ${resp.status}`);
+        if (status !== 200)
+            throw new Error(`HTTP Error: ${status}`);
 
-        const data = await resp.json();
+        // const data = await resp.json();
         return data.id;
         
     } catch (error) {
